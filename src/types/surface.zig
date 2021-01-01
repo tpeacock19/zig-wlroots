@@ -57,6 +57,16 @@ pub const Surface = extern struct {
         precommit: ?fn (surface: *Surface) callconv(.C) void,
     };
 
+    pub const Output = extern struct {
+        surface: *wlr.Surface,
+        output: *wlr.Output,
+
+        // Surface.current_outputs
+        link: wl.list.Link,
+        bind: wl.Listener(*wlr.Output.event.Bind),
+        destroy: wl.Listener(*wlr.Output),
+    };
+
     resource: *wl.Surface,
     renderer: *wlr.Renderer,
 
@@ -84,6 +94,8 @@ pub const Surface = extern struct {
 
     subsurfaces: wl.list.Head(Subsurface, "parent_link"),
     subsurface_pending_list: wl.list.Head(Subsurface, "parent_pending_link"),
+
+    current_outputs: wl.list.Head(Surface.Output, "link"),
 
     renderer_destroy: wl.Listener(*wlr.Renderer),
 

@@ -105,6 +105,11 @@ pub const Output = extern struct {
             /// This is a bitfield of Present.flag members
             flags: u32,
         };
+
+        pub const Bind = extern struct {
+            output: *wlr.Output,
+            resource: *wl.Output,
+        };
     };
 
     const Impl = opaque {};
@@ -151,6 +156,7 @@ pub const Output = extern struct {
         precommit: wl.Signal(*event.Precommit),
         commit: wl.Signal(*event.Commit),
         present: wl.Signal(*event.Present),
+        bind: wl.Signal(*event.Bind),
         enable: wl.Signal(*Output),
         mode: wl.Signal(*Output),
         scale: wl.Signal(*Output),

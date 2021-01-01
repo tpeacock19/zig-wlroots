@@ -13,6 +13,14 @@ const xcb = struct {
     const Pixmap = u32;
     const Window = u32;
     const Atom = u32;
+
+    const StackMode = extern enum {
+        above = 0,
+        below = 1,
+        top_if = 2,
+        bottom_if = 3,
+        opposite = 4,
+    };
 };
 
 pub const Xwm = opaque {};
@@ -33,7 +41,7 @@ pub const XwaylandServer = extern struct {
 
     pid: os.pid_t,
     client: ?*wl.Client,
-    sigusr1_source: ?*wl.EventSource,
+    pipe_source: ?*wl.EventSource,
     wm_fd: [2]c_int,
     wl_fd: [2]c_int,
 
@@ -258,6 +266,9 @@ pub const XwaylandSurface = extern struct {
 
     extern fn wlr_xwayland_surface_activate(surface: *XwaylandSurface, activated: bool) void;
     pub const activate = wlr_xwayland_surface_activate;
+
+    extern fn wlr_xwayland_surface_restack(surface: *XwaylandSurface, sibling: *XwaylandSurface, mode: xcb.StackMode) void;
+    pub const restack = wlr_xwayland_surface_restack;
 
     extern fn wlr_xwayland_surface_configure(surface: *XwaylandSurface, x: i16, y: i16, width: u16, height: u16) void;
     pub const configure = wlr_xwayland_surface_configure;
