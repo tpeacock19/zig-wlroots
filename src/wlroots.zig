@@ -126,5 +126,8 @@ pub const OutputManagerV1 = @import("types/output_management_v1.zig").OutputMana
 pub const OutputHeadV1 = @import("types/output_management_v1.zig").OutputHeadV1;
 pub const OutputConfigurationV1 = @import("types/output_management_v1.zig").OutputConfigurationV1;
 
-pub const ForeignToplevelManagerV1 = @import("types/foreign_toplevel_management_v1.zig").ForeignToplevelManagerV1;
-pub const ForeignToplevelHandleV1 = @import("types/foreign_toplevel_management_v1.zig").ForeignToplevelHandleV1;
+//pub const ForeignToplevelManagerV1 = @import("types/foreign_toplevel_management_v1.zig").ForeignToplevelManagerV1;
+//pub const ForeignToplevelHandleV1 = @import("types/foreign_toplevel_management_v1.zig").ForeignToplevelHandleV1;
+
+pub const ForeignToplevelInfoV1 = @import("types/foreign_toplevel_info_v1.zig").ForeignToplevelInfoV1;
+pub const ForeignToplevelHandleV1 = @import("types/foreign_toplevel_info_v1.zig").ForeignToplevelHandleV1;
