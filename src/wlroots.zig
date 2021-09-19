@@ -161,7 +161,7 @@ pub const config = @import("config.zig");
 pub const version = @import("version.zig");
 
 comptime {
-    if (version.major != 0 or version.minor != 14) {
+    if (version.major != 0 or version.minor <= 14) {
         @compileError("zig-wlroots requires wlroots version 0.14");
     }
 }
